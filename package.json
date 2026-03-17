@@ -1,0 +1,31 @@
+{
+  "name": "cursos-online-backend",
+  "version": "1.0.0",
+  "description": "API para gerenciamento de plataforma de cursos online",
+  "main": "index.js",
+  "type": "mmodule",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lillianmartins/cursos-online-backend.git"
+  },
+  "keywords": [
+    "API",
+    "CURSOS",
+    "MVC",
+    "BACKEND",
+    "NODE"
+  ],
+  "author": "Lillian Martins Cruz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lillianmartins/cursos-online-backend/issues"
+  },
+  "homepage": "https://github.com/lillianmartins/cursos-online-backend#readme",
+  "dependencies": {
+    "mysql2": "^3.20.0"
+  }
+}
