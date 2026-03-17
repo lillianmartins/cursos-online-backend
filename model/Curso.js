@@ -1,3 +1,5 @@
+import CursoDB from "../db/cursoDB.js";
+
 export default class Curso {
   #id;
   #nome;
@@ -73,10 +75,30 @@ export default class Curso {
     return `
     Nome: ${this.#nome}
     Descrição: ${this.#descricao}
-    Categoria: ${this.categoria}
-    Carga Horária: ${this.qtd_horas}
+    Categoria: ${this.#categoria}
+    Carga Horária: ${this.#qtd_horas}
     Data de ínício: ${this.#data_inicio}
     Data de fim: ${this.#data_fim}
     `;
+  }
+
+  async cadastrar() {
+    const cursoDB = new CursoDB();
+    await cursoDB.cadastrar(this);
+  }
+
+  async consultar(termo) {
+    const cursoDB = new CursoDB();
+    return await cursoDB.consultar(termo);
+  }
+
+  async atualizar() {
+    const cursoDB = new CursoDB();
+    await cursoDB.atualizar(this);
+  }
+
+  async excluir() {
+    const cursoDB = new CursoDB();
+    await cursoDB.excluir(this);
   }
 }

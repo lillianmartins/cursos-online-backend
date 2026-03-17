@@ -1,3 +1,5 @@
+import CategoriaDB from "../db/categoriaDB.js";
+
 export default class Categoria {
   #id;
   #nome;
@@ -35,4 +37,24 @@ export default class Categoria {
         Descrição: ${this.#descricao}
     `;
   }
+
+    async cadastrar() {
+      const categoriaDB = new CategoriaDB();
+      await categoriaDB.cadastrar(this);
+    }
+  
+    async consultar(termo) {
+      const categoriaDB = new CategoriaDB();
+      return await categoriaDB.consultar(termo);
+    }
+  
+    async atualizar() {
+      const categoriaDB = new CategoriaDB();
+      await categoriaDB.atualizar(this);
+    }
+  
+    async excluir() {
+      const categoriaDB = new CategoriaDB();
+      await categoriaDB.excluir(this);
+    }
 }
