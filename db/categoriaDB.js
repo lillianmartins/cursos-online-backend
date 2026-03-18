@@ -19,7 +19,7 @@ export default class CategoriaDB {
 
   async consultar(termo) {
     let sql = "";
-    if (isNaN(Number(termo))) {
+    if (!isNaN(Number(termo)) && Number(termo) > 0) {
       sql = `SELECT * FROM categoria as cat
       WHERE cat.cat_nome LIKE ?
       `;

@@ -1,4 +1,4 @@
-import Categoria from "../model/Categoria.js3";
+import Categoria from "../model/Categoria.js";
 import Curso from "../model/Curso.js";
 
 export default class CursoController {
@@ -62,11 +62,12 @@ export default class CursoController {
   consultar(req, res) {
     if (req.method === "GET") {
       const id = req.params.id;
+      let termo;
 
       if (isNaN(id)) {
         termo = id;
       } else {
-        let termo = "";
+        termo = "";
       }
 
       const curso = new Curso();

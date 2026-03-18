@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/lillianmartins/cursos-online-backend#readme",
   "dependencies": {
+    "express": "^5.2.1",
     "mysql2": "^3.20.0"
   }
 }

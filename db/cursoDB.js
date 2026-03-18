@@ -33,7 +33,7 @@ export default class CursoDB {
     let sql = "";
     let parametros = [];
 
-    if (isNaN(Number(termo))) {
+    if (!isNaN(Number(termo)) && Number(termo) > 0) {
       sql = `SELECT * FROM curso as cur
       JOIN categoria as cat ON cat.cat_id = cur.cat_id
       WHERE cur.cur_nome LIKE ?

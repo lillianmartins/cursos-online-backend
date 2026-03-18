@@ -1,4 +1,4 @@
-import Categoria from "../model/Categoria.js3";
+import Categoria from "../model/Categoria.js";
 
 export default class CategoriaController {
   cadastrar(req, res) {
@@ -41,11 +41,12 @@ export default class CategoriaController {
   consultar(req, res) {
     if (req.method === "GET") {
       const id = req.params.id;
+      let termo;
 
       if (isNaN(id)) {
         termo = id;
       } else {
-        let termo = "";
+        termo = "";
       }
 
       const categoria = new Categoria();
