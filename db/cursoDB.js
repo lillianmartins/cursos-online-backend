@@ -51,7 +51,7 @@ export default class CursoDB {
     const resultados = await conexao.execute(sql, parametros);
     conexao.release();
 
-    let listaCurso = [];
+    let listaCursos = [];
     for (const resultado of resultados[0]) {
       const categoria = new Categoria(
         resultado.cat_id,
@@ -67,10 +67,10 @@ export default class CursoDB {
         resultado.cur_data_inicio,
         resultado.cur_data_fim,
       );
-      listaCurso.push(curso);
+      listaCursos.push(curso);
     }
 
-    return listaCurso;
+    return listaCursos;
   }
 
   async atualizar(curso) {

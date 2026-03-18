@@ -38,6 +38,40 @@ export default class CategoriaController {
     }
   }
 
+  consultar(req, res) {
+    if (req.method === "GET") {
+      const id = req.params.id;
+
+      if (isNaN(id)) {
+        termo = id;
+      } else {
+        let termo = "";
+      }
+
+      const categoria = new Categoria();
+      categoria
+        .consultar(termo)
+        .then((listaCategorias) => {
+          res.status(200).json({
+            status: true,
+            mensagem: "Categoria consultada com sucesso",
+            categorias: listaCategorias,
+          });
+        })
+        .catch((erro) => {
+          res.status(500).json({
+            status: false,
+            mensagem: `Erro ao consultar categoria: ${erro.message}`,
+          });
+        });
+    } else {
+      res.status(405).json({
+        status: false,
+        mensagem: "Método não permitido",
+      });
+    }
+  }
+
   atualizar(req, res) {
     if (
       req.method === "PUT" ||

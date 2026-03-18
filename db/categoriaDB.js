@@ -34,17 +34,17 @@ export default class CategoriaDB {
     const resultados = await conexao.execute(sql, parametros);
     conexao.release();
 
-    let listaCategoria = [];
+    let listaCategorias = [];
     for (const resultado of resultados[0]) {
       const categoria = new Categoria(
         resultado.cat_id,
         resultado.cat_nome,
         resultado.cat_descricao,
       );
-      listaCategoria.push(categoria);
+      listaCategorias.push(categoria);
     }
 
-    return listaCategoria;
+    return listaCategorias;
   }
 
   async atualizar(categoria) {

@@ -59,6 +59,40 @@ export default class CursoController {
     }
   }
 
+  consultar(req, res) {
+    if (req.method === "GET") {
+      const id = req.params.id;
+
+      if (isNaN(id)) {
+        termo = id;
+      } else {
+        let termo = "";
+      }
+
+      const curso = new Curso();
+      curso
+        .consultar(termo)
+        .then((listaCursos) => {
+          res.status(200).json({
+            status: true,
+            mensagem: "Curso consultado com sucesso",
+            cursos: listaCursos,
+          });
+        })
+        .catch((erro) => {
+          res.status(500).json({
+            status: false,
+            mensagem: `Erro ao consultar curso: ${erro.message}`,
+          });
+        });
+    } else {
+      res.status(405).json({
+        status: false,
+        mensagem: "Método não permitido",
+      });
+    }
+  }
+
   atualizar(req, res) {
     if (
       req.method === "PUT" ||
