@@ -8,7 +8,7 @@ export default class CategoriaController {
 
       if (nome && descricao) {
         const categoria = new Categoria(0, nome, descricao);
-        
+
         categoria
           .cadastrar()
           .then(() => {
@@ -70,6 +70,36 @@ export default class CategoriaController {
           status: false,
           mensagem: "Todos os campos devem ser preenchidos.",
         });
+      }
+    } else {
+      res.status(405).json({
+        status: false,
+        mensagem: "Método não permitido",
+      });
+    }
+  }
+
+  excluir(req, res) {
+    if (req.method === "DELETE") {
+      const id = req.params.id;
+
+      if (id > 0) {
+        const categoria = new Categoria(id);
+
+        categoria
+          .excluir()
+          .then(() => {
+            res.status(200).json({
+              status: true,
+              mensagem: "Categoria excluída com sucesso",
+            });
+          })
+          .catch((erro) => {
+            res.status(500).json({
+              status: false,
+              mensagem: `Erro ao excluir categoria: ${erro.message}`,
+            });
+          });
       }
     } else {
       res.status(405).json({

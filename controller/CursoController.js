@@ -121,4 +121,39 @@ export default class CursoController {
       });
     }
   }
+
+  excluir(req, res) {
+    if (req.method === "DELETE") {
+      const id = req.params.id;
+
+      if (id > 0) {
+        const curso = new Curso(id);
+
+        curso
+          .excluir()
+          .then(() => {
+            res.status(200).json({
+              status: true,
+              mensagem: "Curso excluído com sucesso",
+            });
+          })
+          .catch((erro) => {
+            res.status(500).json({
+              status: false,
+              mensagem: `Erro ao excluir curso: ${erro.message}`,
+            });
+          });
+      } else {
+        res.status(400).json({
+          status: false,
+          mensagem: "Informe um ID válido para exclusão.",
+        });
+      }
+    } else {
+      res.status(405).json({
+        status: false,
+        mensagem: "Método não permitido",
+      });
+    }
+  }
 }
