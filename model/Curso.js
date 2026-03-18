@@ -101,4 +101,16 @@ export default class Curso {
     const cursoDB = new CursoDB();
     await cursoDB.excluir(this);
   }
+
+  toJSON() {
+    return {
+      id: this.#id,
+      nome: this.#nome,
+      descricao: this.#descricao,
+      categoria: this.#categoria,
+      qtd_horas: this.#qtd_horas,
+      data_inicio: this.#data_inicio,
+      data_fim: this.#data_fim,
+    };
+  }
 }

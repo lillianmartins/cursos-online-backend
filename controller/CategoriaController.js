@@ -40,14 +40,7 @@ export default class CategoriaController {
 
   consultar(req, res) {
     if (req.method === "GET") {
-      const id = req.params.id;
-      let termo;
-
-      if (isNaN(id)) {
-        termo = id;
-      } else {
-        termo = "";
-      }
+      const termo = req.params.id || "";
 
       const categoria = new Categoria();
       categoria
@@ -83,7 +76,7 @@ export default class CategoriaController {
       const descricao = req.body.descricao;
 
       if (id > 0 && nome && descricao) {
-        const categoria = new Categoria(0, nome, descricao);
+        const categoria = new Categoria(id, nome, descricao);
 
         categoria
           .atualizar()

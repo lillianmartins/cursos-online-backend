@@ -61,14 +61,7 @@ export default class CursoController {
 
   consultar(req, res) {
     if (req.method === "GET") {
-      const id = req.params.id;
-      let termo;
-
-      if (isNaN(id)) {
-        termo = id;
-      } else {
-        termo = "";
-      }
+      const termo = req.params.id || "";
 
       const curso = new Curso();
       curso
@@ -119,7 +112,7 @@ export default class CursoController {
       ) {
         const categoriaObj = new Categoria(categoria.id);
         const curso = new Curso(
-          0,
+          id,
           nome,
           descricao,
           categoriaObj,

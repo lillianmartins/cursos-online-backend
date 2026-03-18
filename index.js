@@ -6,6 +6,7 @@ const localhost = "localhost";
 const port = 3000;
 
 const app = express();
+app.use(express.json());
 
 app.use("/curso", rotaCurso);
 app.use("/categoria", rotaCategoria);

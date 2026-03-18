@@ -57,4 +57,12 @@ export default class Categoria {
       const categoriaDB = new CategoriaDB();
       await categoriaDB.excluir(this);
     }
+
+    toJSON() {
+      return {
+        id: this.#id,
+        nome: this.#nome,
+        descricao: this.#descricao,
+      };
+    }
 }

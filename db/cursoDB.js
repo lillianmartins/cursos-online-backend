@@ -33,18 +33,16 @@ export default class CursoDB {
     let sql = "";
     let parametros = [];
 
-    if (!isNaN(Number(termo)) && Number(termo) > 0) {
+    if (!isNaN(Number(termo)) && termo !== "") {
       sql = `SELECT * FROM curso as cur
-      JOIN categoria as cat ON cat.cat_id = cur.cat_id
-      WHERE cur.cur_nome LIKE ?
-      `;
-      parametros = [`%${termo}%`];
+               JOIN categoria as cat ON cat.cat_id = cur.cat_id
+               WHERE cur.cur_id = ?`;
+      parametros = [termo];
     } else {
       sql = `SELECT * FROM curso as cur
-      JOIN categoria as cat ON cat.cat_id = cur.cat_id
-      WHERE cur.cur_id = ?
-      `;
-      parametros = [termo];
+               JOIN categoria as cat ON cat.cat_id = cur.cat_id
+               WHERE cur.cur_nome LIKE ?`;
+      parametros = [`%${termo}%`];
     }
 
     const conexao = await obterConexao();

@@ -19,17 +19,16 @@ export default class CategoriaDB {
 
   async consultar(termo) {
     let sql = "";
-    if (!isNaN(Number(termo)) && Number(termo) > 0) {
-      sql = `SELECT * FROM categoria as cat
-      WHERE cat.cat_nome LIKE ?
-      `;
+    let parametros = [];
+    
+    if (!isNaN(Number(termo)) && termo !== "") {
+        sql = `SELECT * FROM categoria WHERE cat_id = ?`;
+        parametros = [termo];
     } else {
-      sql = `SELECT * FROM categoria as cat
-      WHERE cat.cat_id = ?
-      `;
+      sql = `SELECT * FROM categoria WHERE cat_nome LIKE ?`;
+      parametros = [`%${termo}%`];
     }
 
-    const parametros = [termo];
     const conexao = await obterConexao();
     const resultados = await conexao.execute(sql, parametros);
     conexao.release();
